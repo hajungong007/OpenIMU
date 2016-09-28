@@ -45,9 +45,8 @@ Rectangle {
     id: editor
     color: "cyan"
     Repeater {
-        model: EditorModel {
-            id: editorModel
-        }
+        model: canevaLayoutModel
+
         delegate: EditorDelegate {
             id: editorDelegate
         }

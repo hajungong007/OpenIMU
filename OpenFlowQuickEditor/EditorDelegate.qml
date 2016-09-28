@@ -5,9 +5,9 @@ Rectangle {
     width: 50
     height: 50
     z: mouseArea.drag.active ||  mouseArea.pressed ? 2 : 1
-    color: blockColor
-    x: blockX
-    y: blockY
+    color: colorBlock
+    x: xBlock
+    y: yBlock
     property point beginDrag
     property bool caught: true
     border { width:2; color: "white" }
