@@ -1,46 +1,45 @@
 import QtQuick 2.0
 
-MouseArea {
+Rectangle {
     id: editorDelegate
+    width: 50
+    height: 50
+    z: mouseArea.drag.active ||  mouseArea.pressed ? 2 : 1
+    color: blockColor
+    x: blockX
+    y: blockY
+    property point beginDrag
+    property bool caught: true
+    border { width:2; color: "white" }
+    radius: 5
+    Drag.active: mouseArea.drag.active
 
-    width: 80; height: 80
-    drag.target: icon
-
-    Rectangle {
-        id: icon
-        width: 72; height: 72
-        anchors {
-            horizontalCenter: parent.horizontalCenter;
-            verticalCenter: parent.verticalCenter
-        }
-        color: model.color
-        radius: 3
-
-        Drag.active: editorDelegate.drag.active
-        Drag.source: editorDelegate
-        Drag.hotSpot.x: 36
-        Drag.hotSpot.y: 36
-
-        states: [
-            State {
-                when: icon.Drag.active
-                ParentChange {
-                    target: icon
-                    parent: editor
-                }
-
-                AnchorChanges {
-                    target: icon;
-                    anchors.horizontalCenter: undefined;
-                    anchors.verticalCenter: undefined
-                }
-            }
-        ]
+    Text {
+        anchors.centerIn: parent
+        text: index
+        color: "white"
     }
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        drag.target: parent
+        onPressed: {
+            editorDelegate.beginDrag = Qt.point(editorDelegate.x, editorDelegate.y);
+        }
+        onReleased: {
+            if(!editorDelegate.caught) {
+                backAnimX.from = editorDelegate.x;
+                backAnimX.to = beginDrag.x;
+                backAnimY.from = editorDelegate.y;
+                backAnimY.to = beginDrag.y;
+                backAnim.start()
+            }
+        }
 
-    DropArea {
-        anchors { fill: parent; margins: 15 }
-
-        onEntered: visualModel.items.move(drag.source.visualIndex, editorDelegate.visualIndex)
+    }
+    ParallelAnimation {
+        id: backAnim
+        SpringAnimation { id: backAnimX; target: editorDelegate; property: "x"; duration: 500; spring: 2; damping: 0.2 }
+        SpringAnimation { id: backAnimY; target: editorDelegate; property: "y"; duration: 500; spring: 2; damping: 0.2 }
     }
 }

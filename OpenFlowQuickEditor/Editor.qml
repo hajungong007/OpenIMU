@@ -41,26 +41,21 @@
 import QtQuick 2.0
 import QtQml.Models 2.1
 
-GridView {
+Rectangle {
     id: editor
-    cellWidth: 80; cellHeight: 80
-
-    displaced: Transition {
-        NumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
-    }
-
-//! [0]
-    model: DelegateModel {
-//! [0]
-        id: visualModel
+    color: "cyan"
+    Repeater {
         model: EditorModel {
             id: editorModel
         }
-//! [1]
         delegate: EditorDelegate {
             id: editorDelegate
-            property int visualIndex: DelegateModel.itemsIndex
         }
-//! [1]
+    }
+
+    DropArea {
+        anchors.fill: parent
+        onEntered: drag.source.caught = true;
+        onExited: drag.source.caught = false;
     }
 }

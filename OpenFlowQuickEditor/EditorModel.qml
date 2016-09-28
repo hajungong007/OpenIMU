@@ -1,30 +1,45 @@
 import QtQuick 2.0
-import QtQml.Models 2.1
 
 ListModel {
     id: editorModel
-    ListElement { color: "blue" }
-    ListElement { color: "green" }
-    ListElement { color: "red" }
-    ListElement { color: "yellow" }
-    ListElement { color: "orange" }
-    ListElement { color: "purple" }
-    ListElement { color: "cyan" }
-    ListElement { color: "magenta" }
-    ListElement { color: "chartreuse" }
-    ListElement { color: "aquamarine" }
-    ListElement { color: "indigo" }
-    ListElement { color: "black" }
-    ListElement { color: "lightsteelblue" }
-    ListElement { color: "violet" }
-    ListElement { color: "grey" }
-    ListElement { color: "springgreen" }
-    ListElement { color: "salmon" }
-    ListElement { color: "blanchedalmond" }
-    ListElement { color: "forestgreen" }
-    ListElement { color: "pink" }
-    ListElement { color: "navy" }
-    ListElement { color: "goldenrod" }
-    ListElement { color: "crimson" }
-    ListElement { color: "teal" }
+    ListElement {
+        blockColor: "blue"
+        blockX: 100
+        blockY: 100
+    }
+    ListElement {
+        blockColor: "green"
+        blockX: 200
+        blockY: 100
+    }
+    ListElement {
+        blockColor: "red"
+        blockX: 100
+        blockY: 200
+    }
+    ListElement {
+        blockColor: "yellow"
+        blockX: 200
+        blockY: 200
+    }
+    ListElement {
+        blockColor: "orange"
+        blockX: 300
+        blockY: 100
+    }
+    ListElement {
+        blockColor: "purple"
+        blockX: 100
+        blockY: 300
+    }
+    ListElement {
+        blockColor: "cyan"
+        blockX: 300
+        blockY: 300
+    }
+    ListElement {
+        blockColor: "magenta"
+        blockX: 200
+        blockY: 300
+    }
 }

@@ -19,6 +19,7 @@ ColumnLayout {
         delegate: BlockListDelegate {
             id: blockListDelegate
         }
+
     }
 
     TextArea {
