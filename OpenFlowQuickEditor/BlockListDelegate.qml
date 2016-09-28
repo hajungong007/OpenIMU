@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Component {
     Item {
+        id: wrapper
         width: 180; height: 40
         MouseArea{
             id: mouseArea2
@@ -12,7 +13,7 @@ Component {
                 Text {
                     width: 150
                     id:txt
-                    text: blockName
+                    text: blockDisplayName
                     anchors.verticalCenter: parent.verticalCenter
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
@@ -33,18 +34,22 @@ Component {
                         height: 25
                     }
                     onClicked: {
-                        txt.text="Adding block!!!"
-                        blockListModel.append(
-                                    {blockName: blockName + "!",
-                                     description: "This block was added dynamically."
-                                          })
+                        canevaLayoutModel.addBlock(0,0,"magenta")
                     }
                 }
             }
             onClicked: {
-                txt.text="Clicked!!!"
                 availableListViewBlockDescription.text=description
+                wrapper.ListView.view.currentIndex = index
             }
+        }
+        states: State {
+            name: "Current"
+            when: wrapper.ListView.isCurrentItem
+            PropertyChanges { target: wrapper; x: 15 }
+        }
+        transitions: Transition {
+            NumberAnimation { properties: "x"; duration: 200 }
         }
     }
 }

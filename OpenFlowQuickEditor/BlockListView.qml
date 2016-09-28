@@ -8,11 +8,22 @@ ColumnLayout {
     id: availableListView
     spacing: 6
 
+    Component {
+        id: highlightBar
+        Rectangle {
+            width: 200; height: 50
+            color: "Cyan"
+            y: blockList.currentItem.y;
+            Behavior on y { SpringAnimation { spring: 5; damping: 0.5 } }
+        }
+    }
+
     ListView {
         id: blockList
+        width: 200;
         Layout.fillHeight: true
-        highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
         focus: true
+
         model: BlockListModel {
             id: blockListModel
         }
@@ -20,6 +31,10 @@ ColumnLayout {
             id: blockListDelegate
         }
 
+        // Set the highlight delegate. Note we must also set highlightFollowsCurrentItem
+        // to false so the highlight delegate can control how the highlight is moved.
+        highlight: highlightBar
+        highlightFollowsCurrentItem: false
     }
 
     TextArea {
