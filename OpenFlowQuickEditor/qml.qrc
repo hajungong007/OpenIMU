@@ -6,5 +6,7 @@
         <file>BlockListModel.qml</file>
         <file>BlockListDelegate.qml</file>
         <file>BlockListView.qml</file>
+        <file>EditorModel.qml</file>
+        <file>EditorDelegate.qml</file>
     </qresource>
 </RCC>

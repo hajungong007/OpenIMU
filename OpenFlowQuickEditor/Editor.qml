@@ -53,79 +53,13 @@ GridView {
     model: DelegateModel {
 //! [0]
         id: visualModel
-        model: ListModel {
-            id: colorModel
-            ListElement { color: "blue" }
-            ListElement { color: "green" }
-            ListElement { color: "red" }
-            ListElement { color: "yellow" }
-            ListElement { color: "orange" }
-            ListElement { color: "purple" }
-            ListElement { color: "cyan" }
-            ListElement { color: "magenta" }
-            ListElement { color: "chartreuse" }
-            ListElement { color: "aquamarine" }
-            ListElement { color: "indigo" }
-            ListElement { color: "black" }
-            ListElement { color: "lightsteelblue" }
-            ListElement { color: "violet" }
-            ListElement { color: "grey" }
-            ListElement { color: "springgreen" }
-            ListElement { color: "salmon" }
-            ListElement { color: "blanchedalmond" }
-            ListElement { color: "forestgreen" }
-            ListElement { color: "pink" }
-            ListElement { color: "navy" }
-            ListElement { color: "goldenrod" }
-            ListElement { color: "crimson" }
-            ListElement { color: "teal" }
+        model: EditorModel {
+            id: editorModel
         }
 //! [1]
-        delegate: MouseArea {
-            id: delegateEditor
-
+        delegate: EditorDelegate {
+            id: editorDelegate
             property int visualIndex: DelegateModel.itemsIndex
-
-            width: 80; height: 80
-            drag.target: icon
-
-            Rectangle {
-                id: icon
-                width: 72; height: 72
-                anchors {
-                    horizontalCenter: parent.horizontalCenter;
-                    verticalCenter: parent.verticalCenter
-                }
-                color: model.color
-                radius: 3
-
-                Drag.active: delegateEditor.drag.active
-                Drag.source: delegateEditor
-                Drag.hotSpot.x: 36
-                Drag.hotSpot.y: 36
-
-                states: [
-                    State {
-                        when: icon.Drag.active
-                        ParentChange {
-                            target: icon
-                            parent: editor
-                        }
-
-                        AnchorChanges {
-                            target: icon;
-                            anchors.horizontalCenter: undefined;
-                            anchors.verticalCenter: undefined
-                        }
-                    }
-                ]
-            }
-
-            DropArea {
-                anchors { fill: parent; margins: 15 }
-
-                onEntered: visualModel.items.move(drag.source.visualIndex, delegateEditor.visualIndex)
-            }
         }
 //! [1]
     }
