@@ -5,7 +5,6 @@ find_package(Qt5Quick   REQUIRED)
 find_package(Qt5Charts	REQUIRED)
 find_package(Qt5LinguistTools	REQUIRED)
 find_package(Qt5QuickControls2	REQUIRED)
-find_package(Qt5Multimedia	REQUIRED)
 
 add_subdirectory(acquisition)
 add_subdirectory(algorithm)
@@ -73,7 +72,7 @@ QT5_WRAP_CPP(moc_srcs ${headers})
 
 #Application
 add_executable(applicationOpenimu Main.cpp ${srcs} ${headers} ${moc_srcs} ${moc_uis} ${srcs_qrc} ${qml} ${qm_files})
-qt5_use_modules(applicationOpenimu Sql Core Network Xml XmlPatterns Gui Widgets Quick Charts QuickControls2 LinguistTools Multimedia)
+qt5_use_modules(applicationOpenimu Sql Core Network Xml XmlPatterns Gui Widgets Quick Charts QuickControls2 LinguistTools)
 TARGET_LINK_LIBRARIES(applicationOpenimu)
 
 

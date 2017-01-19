@@ -5,8 +5,6 @@
 #include <qstring>
 #include <fstream>
 #include <iostream>
-#include <QSoundEffect>
-#include <QSound>
 #include <QDebug>
 
 using namespace std;
@@ -18,7 +16,6 @@ class Utilities
    public:
     static QString capitalizeFirstCharacter(QString myString);
     static QString capitalizeFirstCharacter(string myString);
-    void playAudio(void);
 
     static QString getColourFromEnum(MessageStatus status);
 

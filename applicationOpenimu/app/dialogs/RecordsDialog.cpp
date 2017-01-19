@@ -255,7 +255,7 @@ void RecordsDialog::addRecordSlot()
         win->getRecordsFromDB();
     }
 
-    mainWindow->stopSpinner(true);
+    mainWindow->stopSpinner();
 }
 
 //*************************** DATA BASE ACCESS *************************

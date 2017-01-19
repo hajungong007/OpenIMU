@@ -54,7 +54,7 @@ class MainWindow : public QMainWindow
 
         //Visual feedback
         void startSpinner();
-        void stopSpinner(bool playAudio = false);
+        void stopSpinner();
 
         //Getting records from DB
         bool getRecordsFromDB();

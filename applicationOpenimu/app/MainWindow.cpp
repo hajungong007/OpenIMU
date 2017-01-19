@@ -215,16 +215,10 @@ void MainWindow::startSpinner()
     movieSpinnerBar->start();
 }
 
-void MainWindow::stopSpinner(bool playAudio)
+void MainWindow::stopSpinner()
 {
     movieSpinnerBar->stop();
     spinnerStatusBar->hide();
-
-    if(playAudio)
-    {
-        Utilities utilities;
-        utilities.playAudio();
-    }
 }
 
 void MainWindow:: refreshRecordListWidget()
@@ -285,7 +279,7 @@ void MainWindow::deleteRecord()
           break;
     }
 
-    stopSpinner(true);
+    stopSpinner();
 }
 
 void MainWindow::openHomeTab()

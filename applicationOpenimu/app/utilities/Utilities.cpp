@@ -18,17 +18,6 @@ QString Utilities::capitalizeFirstCharacter(string myString)
     return myQString.at(0).toUpper() + myQString.mid(1);
 }
 
-void Utilities::playAudio(void)
-{
-    QSoundEffect notificationAudio;
-    notificationAudio.setSource(QUrl::fromLocalFile(":/audio/NotificationSound-2.wav"));
-    notificationAudio.setVolume(0.75f);
-    notificationAudio.play();
-
-    /*QSound notificationSound(":/audio/NotificationSound-2.wav");
-    notificationSound.play();*/
-}
-
 QString Utilities::getColourFromEnum(MessageStatus status)
 {
     switch(status)

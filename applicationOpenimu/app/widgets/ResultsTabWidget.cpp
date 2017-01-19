@@ -83,8 +83,6 @@ void ResultsTabWidget::initFilterView(AccDataDisplay* accDataDisplay)
 
 void ResultsTabWidget::exportToDBSlot()
 {
-    bool playAudio = false;
-
     AlgorithmTab * algorithmTab = (AlgorithmTab*)m_parent;
     MainWindow * mainWindow = (MainWindow*)algorithmTab->getMainWindow();
 
@@ -107,8 +105,6 @@ void ResultsTabWidget::exportToDBSlot()
                                                           "", &dialogResponse);
     if (dialogResponse && !dialogText.isEmpty())
     {
-        playAudio = true;
-
         std::string serializedData;
         AlgorithmOutputInfoSerializer serializer;
 
@@ -135,13 +131,12 @@ void ResultsTabWidget::exportToDBSlot()
     }
 
     delete resultsNameInputDialog;
-    mainWindow->stopSpinner(playAudio);
+    mainWindow->stopSpinner();
     mainWindow->setStatusBarText(statusMessage, status);
 }
 
 void ResultsTabWidget::exportDataToDBSlot()
-{  
-    bool playAudio = false;
+{
     AlgorithmTab * algorithmTab = (AlgorithmTab*)m_parent;
     MainWindow * mainWindow = (MainWindow*)algorithmTab->getMainWindow();
 
@@ -164,8 +159,6 @@ void ResultsTabWidget::exportDataToDBSlot()
                                                           "", &dialogResponse);
     if (dialogResponse && !dialogText.isEmpty())
     {
-        playAudio = true;
-
         RecordInfo newInfo;
         newInfo.m_imuPosition = m_recordInfo.m_imuPosition;
         newInfo.m_imuType = m_recordInfo.m_imuType;
@@ -191,7 +184,7 @@ void ResultsTabWidget::exportDataToDBSlot()
         }
     }
 
-    mainWindow->stopSpinner(playAudio);
+    mainWindow->stopSpinner();
     mainWindow->setStatusBarText(statusMessage, status);
     mainWindow->refreshRecordListWidget();
 }
@@ -234,6 +227,6 @@ void ResultsTabWidget::exportToPdfSlot()
         status = MessageStatus::error;
     }
 
-    mainWindow->stopSpinner(true);
+    mainWindow->stopSpinner();
     mainWindow->setStatusBarText(statusMessage, status);
 }
